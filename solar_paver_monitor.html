@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solar Paver Energy Monitoring</title>
+    <!-- Link to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Styling for the body element */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin-top: 50px;
+        }
+        /* Styling for the data display container */
+        #data {
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Styling for individual data items */
+        .data-item {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main heading of the page -->
+        <h1 class="my-4">Solar Paver Energy Monitoring</h1>
+        <!-- Container to display the data with Bootstrap styling -->
+        <div id="data" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="data-item">
+                <strong>Time:</strong> <span id="time"></span>
+            </div>
+            <div class="data-item">
+                <strong>Energy Produced:</strong> <span id="energy"></span> kWh
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch data from the server
+        function fetchData() {
+            // making a GET request to the /data endpoint
+            fetch('/data')
+                // Parsing the JSON response
+                .then(response => response.json())
+                .then(data => {
+                    // Update the HTML elements with the fetched data
+                    document.getElementById('time').innerText = data.time;
+                    document.getElementById('energy').innerText = data.energy;
+                });
+        }
+
+        // Set an interval to fetch data every second (1000 milliseconds)
+        setInterval(fetchData, 1000);
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- Original simple demonstration of monitoring 
+    solar paver energy prod in real time
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solar Paver Energy Monitoring</title>
+    <style>
+        /* Styling for the body element */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        /* Styling for the data display container */
+        #data {
+            margin-top: 20px;
+        }
+        /* Styling for individual data items */
+        .data-item {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    Main heading of the page
+    <h1>Solar Paver Energy Monitoring</h1>
+    Container to display the data
+    <div id="data">
+        <div class="data-item">
+            <strong>Time:</strong> <span id="time"></span>
+        </div>
+        <div class="data-item">
+            <strong>Energy Produced:</strong> <span id="energy"></span> kWh
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch data from the server
+        function fetchData() {
+            // Make a GET request to the /data endpoint
+            fetch('/data')
+            // Parse the JSON response
+                .then(response => response.json())
+                .then(data => {
+                    // Update the HTML elements with the fetched data
+                    document.getElementById('time').innerText = data.time;
+                    document.getElementById('energy').innerText = data.energy;
+                });
+        }
+        // Set an interval to fetch data every second (1000 milliseconds)
+        setInterval(fetchData, 1000);
+    </script>
+</body>
+</html>
+-->
+
